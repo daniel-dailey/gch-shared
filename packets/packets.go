@@ -1,6 +1,9 @@
 package packets
 
-import "github.com/daniel-dailey/gch-shared/entities"
+import (
+	"github.com/daniel-dailey/gch-shared/entities"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 type CommPacketType int
 
@@ -34,8 +37,9 @@ type UUIDNamePacket struct {
 }
 
 type AuthPacket struct {
-	Username string `bson:"username,omitempty"`
-	Hash     string `bson:"hash,omitempty"`
+	ID       primitive.ObjectID `bson:"_id"`
+	Username string             `bson:"username,omitempty"`
+	Hash     string             `bson:"hash,omitempty"`
 }
 
 func BuildCommPacket(typ CommPacketType, payload interface{}) *CommPacket {

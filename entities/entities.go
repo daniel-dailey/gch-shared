@@ -1,7 +1,11 @@
 package entities
 
+import (
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
+
 type User struct {
-	UUID     string
+	ID       primitive.ObjectID
 	Name     string
 	Age      int
 	Birthday string

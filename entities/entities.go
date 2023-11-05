@@ -5,9 +5,9 @@ import (
 )
 
 type User struct {
-	ID       primitive.ObjectID
-	Name     string
-	Age      int
-	Birthday string
-	Bio      string
+	ID       primitive.ObjectID `bson:"_id"`
+	Name     string             `bson:"name"`
+	Age      int                `bson:"age"`
+	Birthday string             `bson:"birthday"`
+	Bio      string             `bson:"bio"`
 }

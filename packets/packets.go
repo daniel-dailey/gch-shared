@@ -34,8 +34,8 @@ type UUIDNamePacket struct {
 }
 
 type AuthPacket struct {
-	Username string
-	Password string
+	Username string `bson:"username,omitempty"`
+	Hash     string `bson:"hash,omitempty"`
 }
 
 func BuildCommPacket(typ CommPacketType, payload interface{}) *CommPacket {

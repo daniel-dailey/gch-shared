@@ -33,6 +33,11 @@ type UUIDNamePacket struct {
 	Name string
 }
 
+type AuthPacket struct {
+	Username string
+	Password string
+}
+
 func BuildCommPacket(typ CommPacketType, payload interface{}) *CommPacket {
 	cp := &CommPacket{
 		MessageType: typ,

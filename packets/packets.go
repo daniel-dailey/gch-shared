@@ -32,8 +32,8 @@ type MessageContent struct {
 }
 
 type UUIDNamePacket struct {
-	UUID string
-	Name string
+	UUID string `bson:"uuid,omitempty"`
+	Name string `bson:"name,omitempty"`
 }
 
 type AuthPacket struct {

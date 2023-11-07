@@ -32,9 +32,8 @@ type MessageContent struct {
 }
 
 type UUIDNamePacket struct {
-	ID   primitive.ObjectID `bson:"_id"`
-	UUID string             `bson:"uuid,omitempty"`
-	Name string             `bson:"name,omitempty"`
+	UUID string `bson:"uuid,omitempty"`
+	Name string `bson:"name,omitempty"`
 }
 
 type AuthPacket struct {

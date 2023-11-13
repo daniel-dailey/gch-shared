@@ -1,7 +1,6 @@
 package packets
 
 import (
-	"github.com/daniel-dailey/gch-shared/entities"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -9,13 +8,25 @@ type CommPacketType int
 
 const (
 	CommPacketTypeMessage CommPacketType = iota
+	CommPacketTypeOnline
 	CommPacketTypeUserList
 )
+
+func (cpt CommPacketType) String() string {
+	switch cpt {
+	case CommPacketTypeMessage:
+		return "Message"
+	case CommPacketTypeOnline:
+		return "Online"
+	default:
+		return ""
+	}
+}
 
 type CommPacket struct {
 	MessageType   CommPacketType
 	MessagePacket *MessagePacket
-	UserList      map[string]*entities.User
+	OnlinePacket  *OnlinePacket
 }
 
 type MessagePacket struct {
@@ -25,6 +36,11 @@ type MessagePacket struct {
 	UserName  string
 	Timestamp int64
 	Content   *MessageContent
+}
+
+type OnlinePacket struct {
+	UUIDNamePacket *UUIDNamePacket
+	Online         bool
 }
 
 type MessageContent struct {
@@ -49,8 +65,8 @@ func BuildCommPacket(typ CommPacketType, payload interface{}) *CommPacket {
 	switch typ {
 	case CommPacketTypeMessage:
 		cp.MessagePacket = payload.(*MessagePacket)
-	case CommPacketTypeUserList:
-		cp.UserList = payload.(map[string]*entities.User)
+	case CommPacketTypeOnline:
+		cp.OnlinePacket = payload.(*OnlinePacket)
 	}
 	return cp
 }
